@@ -1,0 +1,63 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  /* 🎨 Colors */
+  --background: #f2f2f2;
+  --foreground: #101010;
+  --navbar-text-header-color: #f1f1f1;
+  --primary-color: #d87d4a;
+  --primary-color-hover: #fbaf85;
+
+  /* ✅ Font families */
+  --font-sans: 'Manrope', sans-serif;
+
+  /* 🎯 Radius */
+  --rounded-radius: 8px;
+
+  /* 🅰 Font Sizes */
+  --text-h1: 56px;
+  --text-h2: 40px;
+  --text-h3: 32px;
+  --text-h4: 28px;
+  --text-h5: 24px;
+  --text-h6: 18px;
+  --text-overline: 14px;
+  --text-subtitle: 13px;
+  --text-body: 15px;
+
+  /* 📏 Line spacing */
+  --line-space-h1: 58px;
+  --line-space-h2: 44px;
+  --line-space-h3: 36px;
+  --line-space-h4: 38px;
+  --line-space-h5: 33px;
+  --line-space-h6: 24px;
+  --line-space-overline: 19px;
+  --line-space-subtitle: 25px;
+  --line-space-body: 25px;
+
+  /* ✏️ Letter spacing */
+  --char-space-h1: 2px;
+  --char-space-h2: 1.5px;
+  --char-space-h3: 1.15px;
+  --char-space-h4: 2px;
+  --char-space-h5: 1.7px;
+  --char-space-h6: 1.3px;
+  --char-space-overline: 10px;
+  --char-space-subtitle: 2px;
+}
+
+body {
+  background: var(--background);
+  color: var(--foreground);
+  font-family: var(--font-sans);
+
+}
+
+/* 
+* {
+  outline: 1 solid red;
+
+} */
