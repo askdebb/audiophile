@@ -1,10 +1,10 @@
 import React from 'react';
 import Image from 'next/image';
 
-import { Category } from '@/interfaces/CategoryItem';
+import { Product } from '@/interfaces/CategoryItem';
 
 interface AppCategoryItemListProps {
-  category: Category[];
+  category: Product[];
   categoryHeader: string;
 }
 
@@ -25,10 +25,10 @@ const AppCategoryItemList = ({
             <div key={id}>
               <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center  rounded-radius my-10 bg-[#979797]">
                 <Image
-                  alt={mobileItem.alt}
+                  alt={mobileItem.slug}
                   className="object-cover mx-auto w-full"
                   height={400}
-                  src={mobileItem.img}
+                  src={mobileItem.image.mobile}
                   width={400}
                 />
               </div>
@@ -37,7 +37,7 @@ const AppCategoryItemList = ({
                   new product
                 </span>
                 <h2 className=" uppercase leading-h2 tracking-h2 text-h2 font-bold">
-                  {mobileItem.productHeader}
+                  {mobileItem.name}
                 </h2>
                 <p className=" opacity-50 leading-body">
                   {mobileItem.description}

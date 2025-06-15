@@ -9,17 +9,19 @@ const AppFooterComponent = () => {
   const pathname = usePathname();
 
   return (
-    <div className={`bg-[#191919] ${pathname !== '/' && 'bg-[#000]'}`}>
+    <div className={`${pathname !== '/' ? 'bg-[#000]' : 'bg-[#191919] '}`}>
       <div className="container">
         <div className="border-t-4 w-[104px] mx-auto border-primary" />
-        <div className="p-5">
-          <Image
-            alt="Logo"
-            className="mx-auto mt-8"
-            height={25}
-            src="/assets/shared/desktop/logo.svg"
-            width={143}
-          />
+        <div className="mx-auto w-1/2 mt-10 pb-5 ">
+          <Link href="/">
+            <Image
+              alt="logo image"
+              className="cursor-pointer mx-auto"
+              height={25}
+              src="/assets/shared/desktop/logo.svg"
+              width={143}
+            />
+          </Link>
         </div>
 
         <div className="text-background flex flex-col justify-center items-center uppercase tracking-subtitle text-subtitle gap-y-[16px] my-8 font-bold">

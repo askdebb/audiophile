@@ -71,7 +71,7 @@ const config = {
           '2xl': '2.5rem',
         },
         screens: {
-          sm: '100%',
+          sm: '640px',
           md: '728px',
           lg: '984px',
           xl: '1240px',
