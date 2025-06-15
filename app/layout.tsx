@@ -4,6 +4,7 @@ import { Metadata, Viewport } from 'next';
 import { siteConfig } from '@/config/site';
 import { manrope } from '@/config/fonts';
 import AppNavbar from '@/components/AppNavbar';
+import AppFooterComponent from '@/components/AppFooterComponent';
 
 export const metadata: Metadata = {
   title: {
@@ -29,17 +30,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html suppressHydrationWarning lang="en">
+    <html lang="en" suppressHydrationWarning={true}>
       <head />
-      <body className={`${manrope}`}>
-        <div className="relative flex flex-col h-screen ">
+      <body className={`${manrope}`} suppressHydrationWarning={true}>
+        <div className="relative flex flex-col min-h-screen ">
           <AppNavbar />
 
-          <main className="container">{children}</main>
+          <main className="">{children}</main>
 
-          <footer className="w-full flex items-center justify-center py-3">
-            powered by CodeBOLT
-          </footer>
+          <AppFooterComponent />
         </div>
       </body>
     </html>

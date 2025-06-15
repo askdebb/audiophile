@@ -19,9 +19,11 @@ const config = {
         navbarText: 'var(--navbar-text-header-color)',
         primary: 'var(--primary-color)',
         hoverColor: 'var(--primary-color-hover)',
+        cardColor: 'var(  --card-bg-color)',
+        textColor: 'var(--text-color)',
       },
       borderRadius: {
-        DEFAULT: 'var(--rounded-radius)',
+        radius: 'var(--rounded-radius)',
       },
       fontSize: {
         h1: 'var(--text-h1)',
@@ -62,7 +64,7 @@ const config = {
       container: {
         center: true,
         padding: {
-          DEFAULT: '1rem',
+          DEFAULT: '1.5rem',
           sm: '1.5rem',
           lg: '2rem',
           xl: '2rem',
