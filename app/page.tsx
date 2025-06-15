@@ -1,5 +1,8 @@
+'use client';
+
 import Image from 'next/image';
 import { Card, CardBody } from '@heroui/card';
+import { useRouter } from 'next/navigation';
 
 import AppHomeHeroComponent from '@/components/AppHomeHeroComponent';
 import AppInfoComponent from '@/components/AppInfoComponent';
@@ -7,6 +10,8 @@ import AppMenuComponent from '@/components/AppMenuComponent';
 import { menuInfo } from '@/data/MenuCard';
 
 export default function Home() {
+  const router = useRouter();
+
   return (
     <>
       <AppHomeHeroComponent
@@ -42,7 +47,10 @@ export default function Home() {
                   Upgrade to premium speakers that are phenomenally built to
                   deliver truly remarkable sound.
                 </p>
-                <button className="bg-[#000] font-bold uppercase text-white bg-primary w-[160px] h-[48px] tracking-subtitle text-subtitle">
+                <button
+                  className="bg-[#000000] font-bold uppercase text-white  w-[160px] h-[48px] tracking-subtitle text-subtitle"
+                  onClick={() => router.push('/product/zx9-speaker')}
+                >
                   See Product
                 </button>
               </div>
@@ -56,7 +64,10 @@ export default function Home() {
               <h2 className="text-h3 font-extrabold leading-[60px] tracking-h2 uppercase">
                 zx7 speaker
               </h2>
-              <button className="border border-[#000] uppercase text-[#000] font-bold w-[160px] h-[48px] tracking-subtitle text-subtitle">
+              <button
+                className="border border-[#000] uppercase text-[#000] font-bold w-[160px] h-[48px] tracking-subtitle text-subtitle"
+                onClick={() => router.push('/product/zx7-speaker')}
+              >
                 see product
               </button>
             </div>
@@ -77,7 +88,10 @@ export default function Home() {
                 <h2 className="text-h3 font-extrabold leading-[60px] tracking-h2 uppercase">
                   yx1 earphones
                 </h2>
-                <button className="border border-[#000] uppercase text-[#000] font-bold w-[160px] h-[48px] tracking-subtitle text-subtitle">
+                <button
+                  className="border border-[#000] uppercase text-[#000] font-bold w-[160px] h-[48px] tracking-subtitle text-subtitle"
+                  onClick={() => router.push('/product/yx1-earphones')}
+                >
                   see product
                 </button>
               </div>

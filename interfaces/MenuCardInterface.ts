@@ -3,4 +3,5 @@ export interface MenuCard {
   alt: string;
   src: string;
   header: string;
+  href: string;
 }

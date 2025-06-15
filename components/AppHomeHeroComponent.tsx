@@ -1,4 +1,5 @@
 import React from 'react';
+import { useRouter } from 'next/navigation';
 
 interface AppHomeHeroCompoent {
   overlineText: string;
@@ -23,6 +24,8 @@ const AppHomeHeroComponent = ({
   btnText,
   classNameContainerImage,
 }: AppHomeHeroCompoent) => {
+  const router = useRouter();
+
   return (
     <div className="pb-5 bg-[#191919] w-full ">
       <div className="container w-full max-h-full">
@@ -47,6 +50,8 @@ const AppHomeHeroComponent = ({
             </p>
             <button
               className={`container hover:bg-hoverColor hover:transition-all hover:delay-200 ${btnClassName}`}
+              type="button"
+              onClick={() => router.push(`product/xx99-mark-two-headphones`)}
             >
               {btnText}
             </button>

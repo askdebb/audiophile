@@ -6,12 +6,19 @@ import Link from 'next/link';
 const AppNavbar = () => {
   const pathname = usePathname();
 
+  const borderLinePath = [
+    '/',
+    '/category/headphones',
+    '/category/speakers',
+    '/category/earphones',
+  ].includes(pathname);
+
   return (
     <>
       <div
-        className={`py-8  ${pathname !== '/' ? 'bg-[#000]' : 'bg-[#191919]'}`}
+        className={`pt-8  ${pathname !== '/' ? 'bg-[#000] -pb-5' : 'bg-[#191919] pb-8'}`}
       >
-        <div className="flex items-center justify-between container h-12">
+        <div className="flex items-center justify-between container  mb-10">
           <div className="flex items-center gap-x-8 lg:gap-x-0">
             <span>
               <Image
@@ -54,7 +61,9 @@ const AppNavbar = () => {
             width={23}
           />
         </div>
-        <div className="border-b-1 border-[#979797] mx-auto w-[25.5rem] sm:w-[37.5rem] md:w-[42.5rem] lg:w-[57.5rem] xl:w-[73.5rem] 2xl:w-[82.5rem]" />
+        {borderLinePath && (
+          <div className="border-b-1 border-[#979797] mx-auto w-[25.5rem] sm:w-[37.5rem] md:w-[42.5rem] lg:w-[57.5rem] xl:w-[73.5rem] 2xl:w-[82.5rem]" />
+        )}
       </div>
     </>
   );

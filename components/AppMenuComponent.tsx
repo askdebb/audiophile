@@ -1,6 +1,7 @@
 import React from 'react';
 import { Card, CardBody } from '@heroui/card';
 import Image from 'next/image';
+import Link from 'next/link';
 
 import { MenuCard } from '@/interfaces/MenuCardInterface';
 
@@ -24,21 +25,25 @@ const AppMenuComponent = ({ menuCard }: AppMenuComponentProps) => {
                   width={200}
                 />
               </div>
-              <Card className="rounded-radius h-[200px] mt-28">
+              <Card className="rounded-radius h-[200px] mt-28 shadow-none">
                 <CardBody className="bg-cardColor uppercase tracking-subtitle ">
                   <div className="flex flex-col text-center w-full  justify-center mt-24 space-y-3">
                     <h2 className="text-h6 font-bold">{item.header}</h2>
-                    <p className="flex items-center gap-x-3 w-full justify-center">
-                      <span className="font-bold text-textColor">shop</span>
-                      <span>
-                        <Image
-                          alt="Icon arrow rignt"
-                          height={10}
-                          src="/assets/shared/desktop/icon-arrow-right.svg"
-                          width={10}
-                        />
-                      </span>
-                    </p>
+                    <Link href={item.href}>
+                      <p className="flex items-center gap-x-3 w-full justify-center">
+                        <span className="font-bold text-textColor hover:text-primary hover:transition-all hover:delay-200">
+                          shop
+                        </span>
+                        <span>
+                          <Image
+                            alt="Icon arrow rignt"
+                            height={10}
+                            src="/assets/shared/desktop/icon-arrow-right.svg"
+                            width={10}
+                          />
+                        </span>
+                      </p>
+                    </Link>
                   </div>
                 </CardBody>
               </Card>
