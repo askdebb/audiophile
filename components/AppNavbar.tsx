@@ -3,8 +3,13 @@ import Image from 'next/image';
 import React from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
+import { useDisclosure } from '@heroui/react';
+
+import AppMenuDrawerComponent from './AppMenuDrawerComponent';
+
 const AppNavbar = () => {
   const pathname = usePathname();
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const borderLinePath = [
     '/',
@@ -27,6 +32,7 @@ const AppNavbar = () => {
                 height={15}
                 src="/assets/shared/tablet/icon-hamburger.svg"
                 width={16}
+                onClick={() => onOpen()}
               />
             </span>
             <Link href="/">
@@ -65,6 +71,8 @@ const AppNavbar = () => {
           <div className="border-b-1 border-[#979797] mx-auto w-[25.5rem] sm:w-[37.5rem] md:w-[42.5rem] lg:w-[57.5rem] xl:w-[73.5rem] 2xl:w-[82.5rem]" />
         )}
       </div>
+
+      {isOpen && <AppMenuDrawerComponent isOpen={isOpen} onClose={onClose} />}
     </>
   );
 };

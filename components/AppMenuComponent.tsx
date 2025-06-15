@@ -1,3 +1,5 @@
+'use client';
+
 import React from 'react';
 import { Card, CardBody } from '@heroui/card';
 import Image from 'next/image';
@@ -7,9 +9,14 @@ import { MenuCard } from '@/interfaces/MenuCardInterface';
 
 interface AppMenuComponentProps {
   menuCard: MenuCard[];
+  onClose?: () => void;
 }
 
-const AppMenuComponent = ({ menuCard }: AppMenuComponentProps) => {
+const AppMenuComponent = ({ menuCard, onClose }: AppMenuComponentProps) => {
+  const handleLinkClick = () => {
+    onClose?.();
+  };
+
   return (
     <>
       {Array.isArray(menuCard) &&
@@ -29,7 +36,7 @@ const AppMenuComponent = ({ menuCard }: AppMenuComponentProps) => {
                 <CardBody className="bg-cardColor uppercase tracking-subtitle ">
                   <div className="flex flex-col text-center w-full  justify-center mt-24 space-y-3">
                     <h2 className="text-h6 font-bold">{item.header}</h2>
-                    <Link href={item.href}>
+                    <Link href={item.href} onClick={handleLinkClick}>
                       <p className="flex items-center gap-x-3 w-full justify-center">
                         <span className="font-bold text-textColor hover:text-primary hover:transition-all hover:delay-200">
                           shop
