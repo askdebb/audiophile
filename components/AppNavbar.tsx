@@ -1,11 +1,13 @@
 'use client';
 import Image from 'next/image';
 import React from 'react';
-
+import { usePathname } from 'next/navigation';
 const AppNavbar = () => {
+  const pathname = usePathname();
+
   return (
     <>
-      <div className=" py-8 bg-[#191919] ">
+      <div className={`py-8 bg-[#191919] ${pathname !== '/' && 'bg-[#000]'}`}>
         <div className="flex items-center justify-between container h-12">
           <div className="flex items-center gap-x-8 lg:gap-x-0">
             <span>

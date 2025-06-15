@@ -1,10 +1,15 @@
+'use client';
+
 import Image from 'next/image';
 import React from 'react';
-Image;
+import Link from 'next/link';
+import { usePathname } from 'next/navigation';
 
 const AppFooterComponent = () => {
+  const pathname = usePathname();
+
   return (
-    <div className="bg-[#191919]">
+    <div className={`bg-[#191919] ${pathname !== '/' && 'bg-[#000]'}`}>
       <div className="container">
         <div className="border-t-4 w-[104px] mx-auto border-primary" />
         <div className="p-5">
@@ -18,13 +23,19 @@ const AppFooterComponent = () => {
         </div>
 
         <div className="text-background flex flex-col justify-center items-center uppercase tracking-subtitle text-subtitle gap-y-[16px] my-8 font-bold">
-          <span className="cursor-pointer hover:text-hoverColor">home</span>
           <span className="cursor-pointer hover:text-hoverColor">
-            headphones
+            <Link href="/">home</Link>
           </span>
-          <span className="cursor-pointer hover:text-hoverColor">speakers</span>
           <span className="cursor-pointer hover:text-hoverColor">
-            earphones
+            {' '}
+            <Link href="/category/headphones">headphones</Link>
+          </span>
+          <span className="cursor-pointer hover:text-hoverColor">
+            <Link href="/category/speakers">speakers</Link>
+          </span>
+          <span className="cursor-pointer hover:text-hoverColor">
+            {' '}
+            <Link href="/category/earphones">earphones</Link>
           </span>
         </div>
 
