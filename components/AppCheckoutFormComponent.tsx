@@ -25,7 +25,7 @@ const AppCheckoutFormComponent = () => {
                     Name
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="name"
                     placeholder="Alexei Ward"
                     type="text"
@@ -36,7 +36,7 @@ const AppCheckoutFormComponent = () => {
                     Email Adress
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="email"
                     placeholder="alexei@mail.com"
                     type="email"
@@ -50,7 +50,7 @@ const AppCheckoutFormComponent = () => {
                     Phone number
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="phone-number"
                     placeholder="+1 202-555-0136"
                     type="text"
@@ -70,7 +70,7 @@ const AppCheckoutFormComponent = () => {
                     Your Address
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="address"
                     placeholder="1137 Williams Avenuw"
                     type="text"
@@ -81,7 +81,7 @@ const AppCheckoutFormComponent = () => {
                     ZIP Code
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="zip-code"
                     placeholder="10001"
                     type="text"
@@ -92,7 +92,7 @@ const AppCheckoutFormComponent = () => {
                     City
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="city"
                     placeholder="New York"
                     type="text"
@@ -103,7 +103,7 @@ const AppCheckoutFormComponent = () => {
                     Country
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="country"
                     placeholder="United States"
                     type="text"
@@ -122,7 +122,7 @@ const AppCheckoutFormComponent = () => {
                   <p className="mb-2 font-bold text-12 mb"> Payment Method</p>
                   <div className="space-y-3 ">
                     <div
-                      className={`w-[90%] h-16 border-2 rounded-radius flex ${paymentMethod === 'e-Money' && 'border-primary'}`}
+                      className={`w-full h-16 border-2 rounded-radius flex ${paymentMethod === 'e-Money' && 'border-primary'}`}
                     >
                       <Checkbox
                         className="ml-5 font-bold text-14"
@@ -134,7 +134,7 @@ const AppCheckoutFormComponent = () => {
                       </Checkbox>
                     </div>
                     <div
-                      className={`w-[90%] h-16 border-2 rounded-radius flex ${paymentMethod === 'Cash on Delivery' && 'border-primary'}`}
+                      className={`w-full h-16 border-2 rounded-radius flex ${paymentMethod === 'Cash on Delivery' && 'border-primary'}`}
                     >
                       <Checkbox
                         className="ml-5 font-bold text-14"
@@ -153,7 +153,7 @@ const AppCheckoutFormComponent = () => {
                     ZIP Code
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="zip-code"
                     placeholder="10001"
                     type="text"
@@ -167,7 +167,7 @@ const AppCheckoutFormComponent = () => {
                     e-Money Number
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="e-money-number"
                     placeholder="238521993"
                     type="text"
@@ -181,7 +181,7 @@ const AppCheckoutFormComponent = () => {
                     e-Money PIN
                   </label>
                   <input
-                    className="rounded-radius h-[56px] w-[90%] border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="e-money-pin"
                     placeholder="6891"
                     type="text"
