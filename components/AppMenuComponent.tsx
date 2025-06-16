@@ -32,7 +32,7 @@ const AppMenuComponent = ({ menuCard, onClose }: AppMenuComponentProps) => {
                   width={200}
                 />
               </div>
-              <Card className="rounded-radius h-[200px] mt-28 shadow-none">
+              <Card className="rounded-radius h-[200px] mt-28 shadow-sm">
                 <CardBody className="bg-cardColor uppercase tracking-subtitle ">
                   <div className="flex flex-col text-center w-full  justify-center mt-24 space-y-3">
                     <h2 className="text-h6 font-bold">{item.header}</h2>
