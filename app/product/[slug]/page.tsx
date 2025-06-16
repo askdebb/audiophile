@@ -21,7 +21,7 @@ export async function generateStaticParams() {
 }
 
 interface ProductDetailPageProps {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }
 
 const ProductDetailPage = async ({ params }: ProductDetailPageProps) => {

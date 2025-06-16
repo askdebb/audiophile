@@ -46,7 +46,7 @@ const AppOrderReceiptComponent = ({
                   src="assets/checkout/icon-order-confirmation.svg"
                   width={64}
                 />
-                <h1 className="uppercase text-h2 leading-h2 font-bold">
+                <h1 className="uppercase text-h3 leading-h2 font-bold">
                   thank you for your order
                 </h1>
               </ModalHeader>
