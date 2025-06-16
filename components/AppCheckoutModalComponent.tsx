@@ -13,6 +13,7 @@ import {
 import { Trash2 } from 'lucide-react';
 
 import { useCart } from '@/actions/useCart';
+import { checkComma } from '@/lib';
 
 interface AppCheckoutModalComponentProp {
   isOpen: boolean;
@@ -22,7 +23,6 @@ interface AppCheckoutModalComponentProp {
 
 const AppCheckoutModalComponent = ({
   isOpen,
-  onClose,
   onOpenChange,
 }: AppCheckoutModalComponentProp) => {
   const router = useRouter();
@@ -41,6 +41,8 @@ const AppCheckoutModalComponent = ({
   //     updateQuantity(id, newQuantity);
   //   }
   // };
+
+  const grossPrice = Number(getTotalPrice().toFixed(2));
 
   const incrementQuantity = (id: number, currentQuantity: number) => {
     updateQuantity(id, currentQuantity + 1);
@@ -153,9 +155,9 @@ const AppCheckoutModalComponent = ({
               {cartItems.length > 0 && (
                 <ModalFooter className="flex flex-col gap-4">
                   <div className="flex justify-between items-center w-full my-5">
-                    <span className="uppercase text-16">Total:</span>
+                    <span className="uppercase text-16">Total</span>
                     <span className="font-extrabold text-h6">
-                      ${getTotalPrice().toFixed(2)}
+                      ${checkComma(grossPrice)}
                     </span>
                   </div>
 

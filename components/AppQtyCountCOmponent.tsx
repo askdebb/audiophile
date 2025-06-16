@@ -9,14 +9,12 @@ interface AppQtyCountComponentProps {
   product: Product;
   min?: number;
   max?: number;
-  onAddToCart?: (quantity: number) => void;
 }
 
 const AppQtyCountComponent = ({
   product,
   min = 1,
   max = 99,
-  onAddToCart,
 }: AppQtyCountComponentProps) => {
   const [addFeedback, setAddFeedback] = useState<boolean>(false);
   const [count, setCount] = useState<number>(min);
@@ -41,12 +39,7 @@ const AppQtyCountComponent = ({
       },
       count,
     );
-
     setAddFeedback(true);
-
-    onAddToCart?.(count);
-
-    // Optional: Reset count to minimum after adding to cart
     setCount(min);
   };
 

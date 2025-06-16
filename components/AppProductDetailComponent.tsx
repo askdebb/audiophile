@@ -22,16 +22,6 @@ const AppProductDetailComponent = ({
 }: AppProductDetailsComponentProp) => {
   const router = useRouter();
 
-  // Optional: Handle additional actions when item is added to cart
-  const handleAddToCart = (quantity: number) => {
-    // You can add additional logic here like:
-    // - Show success toast
-    // - Analytics tracking
-    // - etc.
-
-    console.log(`Added ${quantity} ${product.name}(s) to cart!`);
-  };
-
   return (
     <div className=" pb-10">
       <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center rounded-radius my-10 bg-[#979797]">
@@ -56,7 +46,7 @@ const AppProductDetailComponent = ({
         </p>
       </div>
       <div className="pb-10">
-        <AppQtyCountComponent product={product} onAddToCart={handleAddToCart} />
+        <AppQtyCountComponent product={product} />
       </div>
 
       <div className="container">

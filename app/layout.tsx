@@ -31,15 +31,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" suppressHydrationWarning={true}>
+    <html className={manrope.className} lang="en">
       <head />
-      <body className={`${manrope}`} suppressHydrationWarning={true}>
+      <body>
         <CartContextProvider>
-          <div className="relative flex flex-col min-h-screen ">
+          <div className="relative flex flex-col min-h-screen">
             <AppNavbar />
-
-            <main className="">{children}</main>
-
+            <main className="flex-1">{children}</main>
             <AppFooterComponent />
           </div>
         </CartContextProvider>

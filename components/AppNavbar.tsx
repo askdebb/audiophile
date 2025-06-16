@@ -1,6 +1,6 @@
 'use client';
 import Image from 'next/image';
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { usePathname } from 'next/navigation';
 import Link from 'next/link';
 import { useDisclosure } from '@heroui/react';
@@ -11,8 +11,8 @@ import AppCheckoutModalComponent from './AppCheckoutModalComponent';
 import { useCart } from '@/actions/useCart';
 
 const AppNavbar = () => {
+  const [isMounted, setIsMounted] = useState(false);
   const { cartCount } = useCart();
-
   const pathname = usePathname();
 
   const {
@@ -28,6 +28,10 @@ const AppNavbar = () => {
     onOpenChange: onCartOpenChange,
   } = useDisclosure();
 
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
   const borderLinePath = [
     '/',
     '/category/headphones',
@@ -35,25 +39,56 @@ const AppNavbar = () => {
     '/category/earphones',
   ].includes(pathname);
 
+  if (!isMounted) {
+    return (
+      <div className="pt-8 bg-[#191919] pb-8">
+        <div className="flex items-center justify-between container mb-10">
+          <div className="flex items-center gap-x-8 lg:gap-x-0">
+            <Image
+              priority
+              alt="logo image"
+              height={25}
+              src="/assets/shared/desktop/logo.svg"
+              width={143}
+            />
+          </div>
+          <div className="relative">
+            <Image
+              priority
+              alt="cart icon"
+              height={20}
+              src="/assets/shared/desktop/icon-cart.svg"
+              width={23}
+            />
+          </div>
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <div
-        className={`pt-8  ${pathname !== '/' ? 'bg-[#000] -pb-5' : 'bg-[#191919] pb-8'}`}
+        className={`pt-8 ${pathname !== '/' ? 'bg-[#000] -pb-5' : 'bg-[#191919] pb-8'}`}
       >
-        <div className="flex items-center justify-between container  mb-10">
+        <div className="flex items-center justify-between container mb-10">
           <div className="flex items-center gap-x-8 lg:gap-x-0">
-            <span>
+            <button
+              aria-label="Open menu"
+              className="lg:hidden"
+              onClick={onMenuOpen}
+            >
               <Image
+                priority
                 alt="menu icon"
-                className="lg:hidden cursor-pointer"
                 height={15}
                 src="/assets/shared/tablet/icon-hamburger.svg"
                 width={16}
-                onClick={() => onMenuOpen()}
               />
-            </span>
-            <Link href="/">
+            </button>
+            <Link aria-label="Home" href="/">
               <Image
+                priority
                 alt="logo image"
                 className="cursor-pointer"
                 height={25}
@@ -63,76 +98,67 @@ const AppNavbar = () => {
             </Link>
           </div>
 
-          {/* <div className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
-            <span className="cursor-pointer hover:text-hoverColor">home</span>
-            <span className="cursor-pointer hover:text-hoverColor">
-              headphones
-            </span>
-            <span className="cursor-pointer hover:text-hoverColor">
-              speakers
-            </span>
-            <span className="cursor-pointer hover:text-hoverColor">
-              earphones
-            </span>
-          </div> */}
-
-          <div className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
-            <Link className="cursor-pointer hover:text-hoverColor" href="/">
-              home
+          <nav className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
+            <Link className="hover:text-hoverColor transition-colors" href="/">
+              Home
             </Link>
             <Link
-              className="cursor-pointer hover:text-hoverColor"
+              className="hover:text-hoverColor transition-colors"
               href="/category/headphones"
             >
-              headphones
+              Headphones
             </Link>
             <Link
-              className="cursor-pointer hover:text-hoverColor"
+              className="hover:text-hoverColor transition-colors"
               href="/category/speakers"
             >
-              speakers
+              Speakers
             </Link>
             <Link
-              className="cursor-pointer hover:text-hoverColor"
+              className="hover:text-hoverColor transition-colors"
               href="/category/earphones"
             >
-              earphones
+              Earphones
             </Link>
-          </div>
+          </nav>
 
           <div className="relative">
-            <Image
-              alt="cart icon"
-              className="cursor-pointer"
-              height={20}
-              src="/assets/shared/desktop/icon-cart.svg"
-              width={23}
-              onClick={() => onCartOpen()}
-            />
-            {cartCount > 0 && (
-              <span className="text-primary font-extrabold absolute -top-6 right-1">
-                {cartCount}
-              </span>
-            )}
+            <button
+              aria-label={`Cart (${cartCount} items)`}
+              onClick={onCartOpen}
+            >
+              <Image
+                priority
+                alt=""
+                height={20}
+                src="/assets/shared/desktop/icon-cart.svg"
+                width={23}
+              />
+              {cartCount > 0 && (
+                <span
+                  aria-hidden="true"
+                  className="text-primary font-extrabold absolute -top-5 right-0.5"
+                >
+                  {cartCount}
+                </span>
+              )}
+            </button>
           </div>
         </div>
         {borderLinePath && (
-          <div className="border-b-1 border-[#979797] mx-auto w-[25.5rem] sm:w-[37.5rem] md:w-[42.5rem] lg:w-[57.5rem] xl:w-[73.5rem] 2xl:w-[82.5rem]" />
+          <div
+            aria-hidden="true"
+            className="border-b border-[#979797] mx-auto w-full max-w-[82.5rem]"
+          />
         )}
       </div>
 
-      {isMenuOpen && (
-        <AppMenuDrawerComponent isOpen={isMenuOpen} onClose={onMenuClose} />
-      )}
-      {isCartOpen && (
-        <AppCheckoutModalComponent
-          isOpen={isCartOpen}
-          onClose={onCartClose}
-          onOpenChange={onCartOpenChange}
-        />
-      )}
-
-      {/* <AppQtyCountComponent onAddToCart={setCartNumber} /> */}
+      <AppMenuDrawerComponent isOpen={isMenuOpen} onClose={onMenuClose} />
+      <AppCheckoutModalComponent
+        isOpen={isCartOpen}
+        onClose={onCartClose}
+        onOpenChange={onCartOpenChange}
+      />
     </>
   );
 };

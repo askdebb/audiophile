@@ -14,22 +14,28 @@ const CART_STORAGE_KEY = 'audiophile_cart';
 const CartContextProvider: React.FC<CartContextProviderProps> = ({
   children,
 }) => {
-  // Initialize state with localStorage data or empty array
-  const [cartItems, setCartItems] = useState<CartItem[]>(() => {
-    // This function runs only on the client side during initial render
-    if (typeof window !== 'undefined') {
+  const [isInitialized, setIsInitialized] = useState(false);
+  const [cartItems, setCartItems] = useState<CartItem[]>([]);
+
+  // Initialize cart state after mount
+  useEffect(() => {
+    try {
       const savedCart = localStorage.getItem(CART_STORAGE_KEY);
 
-      return savedCart ? JSON.parse(savedCart) : [];
+      setCartItems(savedCart ? JSON.parse(savedCart) : []);
+    } catch {
+      setCartItems([]);
+    } finally {
+      setIsInitialized(true);
     }
+  }, []);
 
-    return [];
-  });
-
-  // Save to localStorage whenever cartItems changes
+  // Persist cart to localStorage
   useEffect(() => {
-    localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
-  }, [cartItems]);
+    if (isInitialized) {
+      localStorage.setItem(CART_STORAGE_KEY, JSON.stringify(cartItems));
+    }
+  }, [cartItems, isInitialized]);
 
   const cartCount = cartItems.length;
 
@@ -40,24 +46,19 @@ const CartContextProvider: React.FC<CartContextProviderProps> = ({
 
   const addToCart = (item: Omit<CartItem, 'quantity'>, quantity: number) => {
     setCartItems((prevItems) => {
-      const existingItem = prevItems.find(
+      const existingIndex = prevItems.findIndex(
         (cartItem) => cartItem.id === item.id,
       );
+      const newItems = [...prevItems];
 
-      let newItems;
-
-      if (existingItem) {
-        newItems = prevItems.map((cartItem) =>
-          cartItem.id === item.id
-            ? { ...cartItem, quantity: cartItem.quantity + quantity }
-            : cartItem,
-        );
+      if (existingIndex >= 0) {
+        newItems[existingIndex] = {
+          ...newItems[existingIndex],
+          quantity: newItems[existingIndex].quantity + quantity,
+        };
       } else {
-        newItems = [...prevItems, { ...item, quantity }];
+        newItems.push({ ...item, quantity });
       }
-
-      // For debugging
-      console.log('Updated cart:', newItems);
 
       return newItems;
     });
@@ -100,6 +101,10 @@ const CartContextProvider: React.FC<CartContextProviderProps> = ({
     clearCart,
     getTotalPrice,
   };
+
+  if (!isInitialized) {
+    return null; // Or a loading skeleton
+  }
 
   return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
