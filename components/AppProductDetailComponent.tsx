@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { Card, CardBody } from '@heroui/react';
 import { useRouter } from 'next/navigation';
 
-import AppQtyCountCOmponent from './AppQtyCountCOmponent';
+import AppQtyCountComponent from './AppQtyCountComponent';
 import AppMenuComponent from './AppMenuComponent';
 import AppInfoComponent from './AppInfoComponent';
 
@@ -21,6 +21,16 @@ const AppProductDetailComponent = ({
   product,
 }: AppProductDetailsComponentProp) => {
   const router = useRouter();
+
+  // Optional: Handle additional actions when item is added to cart
+  const handleAddToCart = (quantity: number) => {
+    // You can add additional logic here like:
+    // - Show success toast
+    // - Analytics tracking
+    // - etc.
+
+    console.log(`Added ${quantity} ${product.name}(s) to cart!`);
+  };
 
   return (
     <div className=" pb-10">
@@ -46,7 +56,7 @@ const AppProductDetailComponent = ({
         </p>
       </div>
       <div className="pb-10">
-        <AppQtyCountCOmponent />
+        <AppQtyCountComponent product={product} onAddToCart={handleAddToCart} />
       </div>
 
       <div className="container">

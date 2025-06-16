@@ -6,10 +6,27 @@ import Link from 'next/link';
 import { useDisclosure } from '@heroui/react';
 
 import AppMenuDrawerComponent from './AppMenuDrawerComponent';
+import AppCheckoutModalComponent from './AppCheckoutModalComponent';
+
+import { useCart } from '@/actions/useCart';
 
 const AppNavbar = () => {
+  const { cartCount } = useCart();
+
   const pathname = usePathname();
-  const { isOpen, onOpen, onClose } = useDisclosure();
+
+  const {
+    isOpen: isMenuOpen,
+    onOpen: onMenuOpen,
+    onClose: onMenuClose,
+  } = useDisclosure();
+
+  const {
+    isOpen: isCartOpen,
+    onOpen: onCartOpen,
+    onClose: onCartClose,
+    onOpenChange: onCartOpenChange,
+  } = useDisclosure();
 
   const borderLinePath = [
     '/',
@@ -32,7 +49,7 @@ const AppNavbar = () => {
                 height={15}
                 src="/assets/shared/tablet/icon-hamburger.svg"
                 width={16}
-                onClick={() => onOpen()}
+                onClick={() => onMenuOpen()}
               />
             </span>
             <Link href="/">
@@ -46,7 +63,7 @@ const AppNavbar = () => {
             </Link>
           </div>
 
-          <div className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
+          {/* <div className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
             <span className="cursor-pointer hover:text-hoverColor">home</span>
             <span className="cursor-pointer hover:text-hoverColor">
               headphones
@@ -57,22 +74,65 @@ const AppNavbar = () => {
             <span className="cursor-pointer hover:text-hoverColor">
               earphones
             </span>
+          </div> */}
+
+          <div className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
+            <Link className="cursor-pointer hover:text-hoverColor" href="/">
+              home
+            </Link>
+            <Link
+              className="cursor-pointer hover:text-hoverColor"
+              href="/category/headphones"
+            >
+              headphones
+            </Link>
+            <Link
+              className="cursor-pointer hover:text-hoverColor"
+              href="/category/speakers"
+            >
+              speakers
+            </Link>
+            <Link
+              className="cursor-pointer hover:text-hoverColor"
+              href="/category/earphones"
+            >
+              earphones
+            </Link>
           </div>
 
-          <Image
-            alt="cart icon"
-            className="cursor-pointer"
-            height={20}
-            src="/assets/shared/desktop/icon-cart.svg"
-            width={23}
-          />
+          <div className="relative">
+            <Image
+              alt="cart icon"
+              className="cursor-pointer"
+              height={20}
+              src="/assets/shared/desktop/icon-cart.svg"
+              width={23}
+              onClick={() => onCartOpen()}
+            />
+            {cartCount > 0 && (
+              <span className="text-primary font-extrabold absolute -top-6 right-1">
+                {cartCount}
+              </span>
+            )}
+          </div>
         </div>
         {borderLinePath && (
           <div className="border-b-1 border-[#979797] mx-auto w-[25.5rem] sm:w-[37.5rem] md:w-[42.5rem] lg:w-[57.5rem] xl:w-[73.5rem] 2xl:w-[82.5rem]" />
         )}
       </div>
 
-      {isOpen && <AppMenuDrawerComponent isOpen={isOpen} onClose={onClose} />}
+      {isMenuOpen && (
+        <AppMenuDrawerComponent isOpen={isMenuOpen} onClose={onMenuClose} />
+      )}
+      {isCartOpen && (
+        <AppCheckoutModalComponent
+          isOpen={isCartOpen}
+          onClose={onCartClose}
+          onOpenChange={onCartOpenChange}
+        />
+      )}
+
+      {/* <AppQtyCountComponent onAddToCart={setCartNumber} /> */}
     </>
   );
 };
