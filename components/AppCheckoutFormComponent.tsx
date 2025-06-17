@@ -75,7 +75,7 @@ const AppCheckoutFormComponent = ({
                       </>
                     </label>
                     <input
-                      className={`rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary hover:border-primary font-bold ${errors.email && touched.email && 'text-[#cd2c2c] focus:outline-[#cd2c2c] focus:border-[#cd2c2c]'}`}
+                      className={`rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary hover:border-primary font-bold ${errors.email || touched.email ? 'text-[#cd2c2c] outline-[#cd2c2c] border-[#cd2c2c] focus:outline-[#cd2c2c] hover:border-[#cd2c2c] focus:border-[#cd2c2c] border-2' : ''}`}
                       id="email"
                       placeholder="alexei@mail.com"
                       type="email"
