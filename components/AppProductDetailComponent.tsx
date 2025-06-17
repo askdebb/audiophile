@@ -88,7 +88,7 @@ const AppProductDetailComponent = ({
 
       <div className="container">
         <div className="flex flex-col gap-y-5 mb-10 md:grid md:grid-cols-2 md:gap-5">
-          <div className="md:space-y-5 lg:space-y-8">
+          <div className="space-y-5 md:space-y-5 lg:space-y-8">
             <Image
               alt={product.name}
               className="object-cover rounded-radius"
