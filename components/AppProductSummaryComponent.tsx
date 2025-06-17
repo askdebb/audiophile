@@ -21,7 +21,7 @@ const AppProductSummaryComponent = () => {
 
   return (
     <>
-      <div className="container mt-10 mb-20">
+      <div className="container mt-10">
         <div className=" bg-white p-5 rounded-radius">
           <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h5 font-extrabold">
             summary

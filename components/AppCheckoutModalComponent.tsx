@@ -14,6 +14,7 @@ import { Trash2 } from 'lucide-react';
 
 import { useCart } from '@/actions/useCart';
 import { checkComma } from '@/lib';
+import { useScreenSize } from '@/helpers/useScreensize';
 
 interface AppCheckoutModalComponentProp {
   isOpen: boolean;
@@ -33,6 +34,8 @@ const AppCheckoutModalComponent = ({
     getTotalPrice,
     clearCart,
   } = useCart();
+
+  const screenSizeDetector = useScreenSize();
 
   // const handleQuantityChange = (id: string, newQuantity: number) => {
   //   if (newQuantity <= 0) {
@@ -57,11 +60,20 @@ const AppCheckoutModalComponent = ({
   };
 
   return (
-    <>
+    <div className="md:relative">
       <Modal
+        className="md:absolute md:top-0 md:right-12"
         isDismissable={false}
         isOpen={isOpen}
-        placement="top-center"
+        placement={
+          screenSizeDetector === 'tablet'
+            ? 'top'
+            : screenSizeDetector === 'desktop'
+              ? 'center'
+              : screenSizeDetector === '2xl'
+                ? 'center'
+                : 'top-center'
+        }
         onOpenChange={onOpenChange}
       >
         <ModalContent>
@@ -179,7 +191,7 @@ const AppCheckoutModalComponent = ({
           )}
         </ModalContent>
       </Modal>
-    </>
+    </div>
   );
 };
 

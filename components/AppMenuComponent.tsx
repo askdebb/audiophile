@@ -30,7 +30,7 @@ const AppMenuComponent = ({ menuCard, onClose }: AppMenuComponentProps) => {
                 <div className="flex justify-center">
                   <Image
                     alt={item.alt}
-                    className="absolute top-10 z-10 w-auto h-auto md:w-3/4"
+                    className="absolute top-10 z-10 w-auto h-auto md:w-3/4 md:top-16"
                     height={300}
                     src={item.src}
                     width={200}

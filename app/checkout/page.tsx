@@ -6,11 +6,12 @@ import AppBackButton from '@/components/AppBackBtnComponent';
 
 const CheckoutPage = () => {
   return (
-    <div>
-      <div className="container mt-2 pt-8">
+    <div className="bg-[#f2f2f2] pb-20">
+      <div className="container pt-8">
         <AppBackButton />
       </div>
       <AppCheckoutFormComponent />
+
       <AppProductSummaryComponent />
     </div>
   );

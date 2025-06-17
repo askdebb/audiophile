@@ -19,35 +19,43 @@ const AppCheckoutFormComponent = () => {
               <h2 className="text-subtitle uppercase tracking-subtitle text-primary font-bold my-8">
                 billing details
               </h2>
-              <div className="space-y-5 my-5">
-                <div className="flex flex-wrap flex-col ">
-                  <label className="mb-2 font-bold text-12" htmlFor="name">
-                    Name
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="name"
-                    placeholder="Alexei Ward"
-                    type="text"
-                  />
+              <div className="space-y-5 my-5 md:flex md:flex-col">
+                {/* Top Row - Two equal width inputs */}
+                <div className="md:flex md:space-x-5">
+                  {/* Name Input */}
+                  <div className="flex flex-col md:w-1/2">
+                    <label className="mb-2 font-bold text-12" htmlFor="name">
+                      Name
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="name"
+                      placeholder="Alexei Ward"
+                      type="text"
+                    />
+                  </div>
+
+                  {/* Email Input */}
+                  <div className="flex flex-col md:w-1/2 mt-5 md:mt-0">
+                    <label className="mb-2 font-bold text-12" htmlFor="email">
+                      Email Address
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="email"
+                      placeholder="alexei@mail.com"
+                      type="email"
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-wrap flex-col ">
-                  <label className="mb-2 font-bold text-12" htmlFor="email">
-                    Email Adress
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="email"
-                    placeholder="alexei@mail.com"
-                    type="email"
-                  />
-                </div>
-                <div className="flex flex-wrap flex-col ">
+
+                {/* Bottom Row - Full width input */}
+                <div className="flex flex-col md:w-1/2">
                   <label
                     className="mb-2 font-bold text-12"
                     htmlFor="phone-number"
                   >
-                    Phone number
+                    Phone Number
                   </label>
                   <input
                     className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
@@ -64,41 +72,46 @@ const AppCheckoutFormComponent = () => {
               <h2 className="text-subtitle uppercase tracking-subtitle text-primary font-bold my-8">
                 shipping info
               </h2>
-              <div className="space-y-5 my-5">
-                <div className="flex flex-wrap flex-col ">
+              <div className="space-y-5 my-5 md:flex md:flex-col">
+                <div className="flex flex-col ">
                   <label className="mb-2 font-bold text-12" htmlFor="address">
                     Your Address
                   </label>
                   <input
                     className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
                     id="address"
-                    placeholder="1137 Williams Avenuw"
+                    placeholder="1137 Williams Avenue"
                     type="text"
                   />
                 </div>
-                <div className="flex flex-wrap flex-col ">
-                  <label className="mb-2 font-bold text-12" htmlFor="zip-code">
-                    ZIP Code
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="zip-code"
-                    placeholder="10001"
-                    type="text"
-                  />
+                <div className="md:flex md:space-x-5">
+                  <div className="flex flex-col md:w-1/2 ">
+                    <label
+                      className="mb-2 font-bold text-12"
+                      htmlFor="zip-code"
+                    >
+                      ZIP Code
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="zip-code"
+                      placeholder="10001"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-col md:w-1/2 ">
+                    <label className="mb-2 font-bold text-12" htmlFor="city">
+                      City
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="city"
+                      placeholder="New York"
+                      type="text"
+                    />
+                  </div>
                 </div>
-                <div className="flex flex-wrap flex-col ">
-                  <label className="mb-2 font-bold text-12" htmlFor="city">
-                    City
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="city"
-                    placeholder="New York"
-                    type="text"
-                  />
-                </div>
-                <div className="flex flex-wrap flex-col ">
+                <div className="flex flex-col md:w-1/2 ">
                   <label className="mb-2 font-bold text-12" htmlFor="country">
                     Country
                   </label>
@@ -118,9 +131,12 @@ const AppCheckoutFormComponent = () => {
                 payment details
               </h2>
               <div className="space-y-5 my-5">
-                <div>
-                  <p className="mb-2 font-bold text-12 mb"> Payment Method</p>
-                  <div className="space-y-3 ">
+                <div className="md:flex md:justify-between">
+                  <p className="mb-2 font-bold text-12 mb md:w-1/2">
+                    {' '}
+                    Payment Method
+                  </p>
+                  <div className="space-y-3 md:w-1/2 ">
                     <div
                       className={`w-full h-16 border-2 rounded-radius flex ${paymentMethod === 'e-Money' && 'border-primary'}`}
                     >
@@ -147,8 +163,7 @@ const AppCheckoutFormComponent = () => {
                     </div>
                   </div>
                 </div>
-
-                <div className="flex flex-wrap flex-col ">
+                <div className="flex flex-wrap flex-col md:hidden">
                   <label className="mb-2 font-bold text-12" htmlFor="zip-code">
                     ZIP Code
                   </label>
@@ -159,33 +174,36 @@ const AppCheckoutFormComponent = () => {
                     type="text"
                   />
                 </div>
-                <div className="flex flex-wrap flex-col ">
-                  <label
-                    className="mb-2 font-bold text-12"
-                    htmlFor="e-money-number"
-                  >
-                    e-Money Number
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="e-money-number"
-                    placeholder="238521993"
-                    type="text"
-                  />
-                </div>
-                <div className="flex flex-wrap flex-col ">
-                  <label
-                    className="mb-2 font-bold text-12"
-                    htmlFor="e-money-pin"
-                  >
-                    e-Money PIN
-                  </label>
-                  <input
-                    className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
-                    id="e-money-pin"
-                    placeholder="6891"
-                    type="text"
-                  />
+
+                <div className="md:flex md:space-x-5">
+                  <div className="flex flex-wrap flex-col md:w-1/2 ">
+                    <label
+                      className="mb-2 font-bold text-12"
+                      htmlFor="e-money-number"
+                    >
+                      e-Money Number
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="e-money-number"
+                      placeholder="238521993"
+                      type="text"
+                    />
+                  </div>
+                  <div className="flex flex-wrap flex-col md:w-1/2">
+                    <label
+                      className="mb-2 font-bold text-12"
+                      htmlFor="e-money-pin"
+                    >
+                      e-Money PIN
+                    </label>
+                    <input
+                      className="rounded-radius h-[56px] w-full border-textColor border py-1 ps-7 focus:outline-primary focus:border-primary caret-primary"
+                      id="e-money-pin"
+                      placeholder="6891"
+                      type="text"
+                    />
+                  </div>
                 </div>
               </div>
             </div>
