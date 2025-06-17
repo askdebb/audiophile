@@ -86,7 +86,7 @@ const AppCheckoutModalComponent = ({
                   </h2>
 
                   <button
-                    className="text-sm text-gray-500 hover:text-gray-700 mr-6 underline"
+                    className="text-sm text-gray-500 hover:text-hoverColor mr-6 underline"
                     onClick={clearCart}
                   >
                     Remove all
@@ -130,7 +130,7 @@ const AppCheckoutModalComponent = ({
                         <div className="flex items-center bg-gray-100">
                           <button
                             aria-label="Decrease quantity"
-                            className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:bg-gray-200"
+                            className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:text-hoverColor"
                             onClick={() =>
                               decrementQuantity(item.id, item.quantity)
                             }
@@ -142,7 +142,7 @@ const AppCheckoutModalComponent = ({
                           </span>
                           <button
                             aria-label="Increase quantity"
-                            className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:bg-gray-200"
+                            className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:text-hoverColor"
                             onClick={() =>
                               incrementQuantity(item.id, item.quantity)
                             }

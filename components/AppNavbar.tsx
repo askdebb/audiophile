@@ -99,23 +99,26 @@ const AppNavbar = () => {
           </div>
 
           <nav className="hidden lg:flex gap-x-[34px] uppercase text-background text-subtitle font-bold tracking-subtitle">
-            <Link className="hover:text-hoverColor transition-colors" href="/">
+            <Link
+              className={` hover:text-hoverColor ${pathname === '/' ? 'text-primary' : ''}`}
+              href="/"
+            >
               Home
             </Link>
             <Link
-              className="hover:text-hoverColor transition-colors"
+              className={` hover:text-hoverColor ${pathname === '/category/headphones' ? 'text-primary' : ''}`}
               href="/category/headphones"
             >
               Headphones
             </Link>
             <Link
-              className="hover:text-hoverColor transition-colors"
+              className={` hover:text-hoverColor ${pathname === '/category/speakers' ? 'text-primary' : ''}`}
               href="/category/speakers"
             >
               Speakers
             </Link>
             <Link
-              className="hover:text-hoverColor transition-colors"
+              className={` hover:text-hoverColor ${pathname === '/category/earphones' ? 'text-primary' : ''}`}
               href="/category/earphones"
             >
               Earphones
@@ -148,7 +151,7 @@ const AppNavbar = () => {
         {borderLinePath && (
           <div
             aria-hidden="true"
-            className="border-1.5 border-b-[#979797] mx-auto w-full md:w-[42.5rem] lg:w-[57.2rem] xl:w-[73.5rem]"
+            className="border-1.5 border-b-[#979797] mx-auto w-full md:w-[42.5rem] lg:w-[57.2rem] xl:w-[73.5rem] 2xl:w-[82.5rem] "
           />
         )}
       </div>

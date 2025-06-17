@@ -1,6 +1,8 @@
 import '@/styles/globals.css';
 import { Metadata, Viewport } from 'next';
 
+import Providers from './providers';
+
 import { siteConfig } from '@/config/site';
 import { manrope } from '@/config/fonts';
 import AppNavbar from '@/components/AppNavbar';
@@ -35,11 +37,13 @@ export default function RootLayout({
       <head />
       <body>
         <CartContextProvider>
-          <div className="relative flex flex-col min-h-screen">
-            <AppNavbar />
-            <main className="flex-1">{children}</main>
-            <AppFooterComponent />
-          </div>
+          <Providers>
+            <div className="relative flex flex-col min-h-screen">
+              <AppNavbar />
+              <main className="flex-1">{children}</main>
+              <AppFooterComponent />
+            </div>
+          </Providers>
         </CartContextProvider>
       </body>
     </html>

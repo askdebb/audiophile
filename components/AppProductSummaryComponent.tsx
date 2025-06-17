@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Card, CardBody, useDisclosure } from '@heroui/react';
+import { Card, CardBody, useDisclosure, addToast } from '@heroui/react';
 import Image from 'next/image';
 
 import AppOrderReceiptComponent from './AppOrderReceiptComponent';
@@ -10,7 +10,13 @@ import { checkComma } from '@/lib';
 import { useCart } from '@/actions/useCart';
 import { SHIPPING_FEE, VAT_CHARGE } from '@/contants/index';
 
-const AppProductSummaryComponent = () => {
+interface AppProductSummaryComponentProps {
+  isEmailValid: boolean;
+}
+
+const AppProductSummaryComponent = ({
+  isEmailValid,
+}: AppProductSummaryComponentProps) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
   const { cartItems, getTotalPrice } = useCart();
 
@@ -19,9 +25,21 @@ const AppProductSummaryComponent = () => {
   const vatPrice = beforeVATprice * VAT_CHARGE;
   const netPrice = beforeVATprice + vatPrice;
 
+  const handleContinuePayment = () => {
+    if (isEmailValid) {
+      onOpen(); // Proceed with payment
+    } else {
+      addToast({
+        title: 'Validation Error',
+        description: 'Please enter a valid email address',
+        color: 'danger',
+      });
+    }
+  };
+
   return (
     <>
-      <div className="container mt-10">
+      <div className="container mt-10 lg:w-1/3 lg:-ml-5">
         <div className=" bg-white p-5 rounded-radius">
           <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h5 font-extrabold">
             summary
@@ -45,10 +63,10 @@ const AppProductSummaryComponent = () => {
                     </CardBody>
                   </Card>
                   <div className="mt-3 w-24">
-                    <h3 className="font-bold text-body ">
+                    <h3 className="font-bold text-body xl:text-subtitle">
                       {finalItemToPurchase.name}
                     </h3>
-                    <p>${checkComma(finalItemToPurchase.price)}</p>
+                    <p className="">${checkComma(finalItemToPurchase.price)}</p>
                   </div>
                 </div>
                 <span className="-mt-10 font-medium opacity-50">
@@ -66,13 +84,15 @@ const AppProductSummaryComponent = () => {
               </span>
             </div>
             <div className="flex justify-between items-center w-full my-1">
-              <span className="uppercase text-body opacity-40">shipping</span>
+              <span className="uppercase text-body lg:text-subtitle opacity-40">
+                shipping
+              </span>
               <span className="font-extrabold text-body tracking-subtitle">
                 ${SHIPPING_FEE}
               </span>
             </div>
             <div className="flex justify-between items-center w-full my-1">
-              <span className="uppercase text-body opacity-40">
+              <span className="uppercase text-body lg:text-subtitle opacity-40">
                 vat (included)
               </span>
               <span className="font-extrabold text-body tracking-1">
@@ -83,7 +103,9 @@ const AppProductSummaryComponent = () => {
 
           <div>
             <div className="flex justify-between items-center w-full my-5">
-              <span className="uppercase text-16 opacity-40">grand total</span>
+              <span className="uppercase text-16 lg:text-14 opacity-40">
+                grand total
+              </span>
               <span className="font-extrabold text-primary text-h6 tracking-subtitle">
                 ${checkComma(netPrice)}
               </span>
@@ -92,9 +114,9 @@ const AppProductSummaryComponent = () => {
 
           <button
             className="flex-1 py-3 my-5 w-full bg-primary text-subtitle text-white font-bold hover:bg-hoverColor uppercase tracking-h6"
-            onClick={() => onOpen()}
+            onClick={handleContinuePayment}
           >
-            coutinue & pay
+            continue & pay
           </button>
         </div>
       </div>

@@ -59,7 +59,7 @@ const AppQtyCountComponent = ({
         <div className="w-40 h-12 bg-[#f1f1f1] flex items-center">
           <button
             aria-label="Decrease quantity"
-            className="w-12 h-full flex justify-center items-center text-subtitle font-bold disabled:opacity-30"
+            className="w-12 h-full flex justify-center items-center text-subtitle font-bold disabled:opacity-30 hover:text-hoverColor"
             disabled={count <= min}
             onClick={handleDecrement}
           >
@@ -72,7 +72,7 @@ const AppQtyCountComponent = ({
 
           <button
             aria-label="Increase quantity"
-            className="w-12 h-full flex justify-center items-center text-subtitle font-bold disabled:opacity-30"
+            className="w-12 h-full flex justify-center items-center text-subtitle font-bold disabled:opacity-30 hover:text-hoverColor"
             disabled={count >= max}
             onClick={handleIncrement}
           >

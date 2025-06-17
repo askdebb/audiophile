@@ -12,7 +12,7 @@ const AppBackButton = ({ className = '' }: AppBackButtonProps) => {
   return (
     <button
       aria-label="Go back to previous page"
-      className={`text-black opacity-50 hover:opacity-100 transition-opacity ${className}`}
+      className={`text-black opacity-50 hover:opacity-100 transition-opacity hover:text-primary ${className}`}
       type="button"
       onClick={() => router.back()}
     >

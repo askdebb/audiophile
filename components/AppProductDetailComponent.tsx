@@ -26,8 +26,8 @@ const AppProductDetailComponent = ({
 
   return (
     <div className=" pb-10 ">
-      <div className="md:flex md:items-center md:gap-x-5 md:container md:mt-16">
-        <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center rounded-radius my-10 bg-cardColor md:bg-transparent md:my-0  md:w-1/2 ">
+      <div className="md:flex md:items-center md:gap-x-5 md:container md:mt-16 lg:gap-x-0">
+        <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center rounded-radius my-10 bg-cardColor md:bg-transparent md:my-0  md:w-1/2  lg:justify-start">
           <Image
             alt={product.name}
             className="object-cover md:rounded-radius"
@@ -42,7 +42,7 @@ const AppProductDetailComponent = ({
             width={400}
           />
         </div>
-        <div className="container space-y-6 mb-10 md:w-1/2">
+        <div className="container space-y-6 mb-10 md:w-1/2 lg:max-w-none lg:px-0">
           <span className="uppercase text-subtitle text-primary tracking-overline">
             {product.new ? 'new product' : ''}
           </span>
@@ -59,34 +59,36 @@ const AppProductDetailComponent = ({
         </div>
       </div>
 
-      <div className="container">
-        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:mt-24">
-          Features
-        </h2>
-        <p className="text-body opacity-50 leading-body mb-10">
-          {product.features}
-        </p>
-      </div>
+      <div className="lg:container lg:flex lg:justify-between lg:gap-x-10">
+        <div className="container lg:w-2/3 lg:max-w-none lg:px-0">
+          <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:mt-24">
+            Features
+          </h2>
+          <p className="text-body opacity-50 leading-body mb-10 lg:w-5/6">
+            {product.features}
+          </p>
+        </div>
 
-      <div className="container mb-10 md:mt-24 md:flex md:items-start md:justify-start md:gap-x-36">
-        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:my-0">
-          in the box
-        </h2>
-        <ul className="text-body opacity-50 leading-body mb-10 space-y-1 md:opacity-100 md:space-y-4">
-          {product.includes.map((accessoryItem, index) => (
-            <li key={index} className="flex gap-x-5">
-              <span className="text-primary font-bold">
-                {accessoryItem.quantity}x
-              </span>
-              <span className="md:opacity-70">{accessoryItem.item}</span>
-            </li>
-          ))}
-        </ul>
+        <div className="container mb-10 md:mt-24 md:flex md:items-start md:justify-start md:gap-x-36 lg:w-1/3 lg:block lg:maz-w-none lg:px-0">
+          <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:my-0">
+            in the box
+          </h2>
+          <ul className="text-body opacity-50 leading-body mb-10 space-y-1 md:opacity-100 md:space-y-4 lg:space-y-2 lg:mt-5">
+            {product.includes.map((accessoryItem, index) => (
+              <li key={index} className="flex gap-x-5">
+                <span className="text-primary font-bold">
+                  {accessoryItem.quantity}x
+                </span>
+                <span className="md:opacity-70">{accessoryItem.item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
       </div>
 
       <div className="container">
         <div className="flex flex-col gap-y-5 mb-10 md:grid md:grid-cols-2 md:gap-5">
-          <div className="md:space-y-5">
+          <div className="md:space-y-5 lg:space-y-8">
             <Image
               alt={product.name}
               className="object-cover rounded-radius"
@@ -141,7 +143,7 @@ const AppProductDetailComponent = ({
               </h3>
               <div className=" flex justify-center mb-10 ">
                 <button
-                  className="container uppercase w-[160px] h-[48px] text-white bg-primary  font-bold tracking-subtitle text-subtitle hover:bg-hoverColor hover:transition-all hover:delay-200"
+                  className="container uppercase w-[160px] h-[48px] text-white bg-primary  font-bold tracking-subtitle text-subtitle hover:bg-hoverColor hover:transition-all hover:delay-200 lg:w-[180px]"
                   type="button"
                   onClick={() => router.push(`/product/${otherItems.slug}`)}
                 >
