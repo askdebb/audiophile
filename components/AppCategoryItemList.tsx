@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import { Product } from '@/interfaces/CategoryItem';
+import { useScreenSize } from '@/helpers/useScreensize';
 
 interface AppCategoryItemListProps {
   category: Product[];
@@ -16,6 +17,7 @@ const AppCategoryItemList = ({
   categoryHeader,
 }: AppCategoryItemListProps) => {
   const router = useRouter();
+  const screenSizeDetector = useScreenSize();
 
   return (
     <>
@@ -28,23 +30,29 @@ const AppCategoryItemList = ({
         {Array.isArray(category) &&
           category.map((mobileItem, id) => (
             <div key={id}>
-              <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center  rounded-radius my-10 bg-[#979797]">
+              <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center  rounded-radius my-10 bg-cardColor md:container md:w-[100%] md:h-auto md:my-16">
                 <Image
                   alt={mobileItem.slug}
-                  className="object-cover "
+                  className="object-cover"
                   height={400}
-                  src={mobileItem.image.mobile}
-                  width={400}
+                  src={
+                    screenSizeDetector === 'tablet'
+                      ? mobileItem.categoryImage.tablet
+                      : screenSizeDetector === 'desktop'
+                        ? mobileItem.categoryImage.desktop
+                        : mobileItem.categoryImage.mobile
+                  }
+                  width={screenSizeDetector === 'mobile' ? 400 : 700}
                 />
               </div>
               <div className="container text-center space-y-6 mb-10">
-                <span className="uppercase text-subtitle text-primary tracking-overline">
+                <span className="uppercase text-subtitle text-primary tracking-overline md:text-h6">
                   new product
                 </span>
-                <h2 className=" uppercase leading-h2 tracking-h2 text-h2 font-bold">
+                <h2 className=" uppercase leading-h2 tracking-h2 text-h2 font-bold md:w-1/2 md:mx-auto">
                   {mobileItem.name}
                 </h2>
-                <p className=" opacity-50 leading-body">
+                <p className=" opacity-50 leading-body md:opacity-80 md:w-11/12 md:mx-auto">
                   {mobileItem.description}
                 </p>
                 <button

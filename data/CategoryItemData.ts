@@ -7,8 +7,10 @@ export const categoryHeadphoneData: Product[] = [
     name: 'XX99 Mark II Headphones',
     image: {
       mobile: '/assets/category/mobile/headphones/headphone-2.png',
-      tablet: '/assets/category/tablet/image-product.jpg',
-      desktop: '/assets/category/desktop/image-product.jpg',
+      tablet:
+        '/assets/product-xx99-mark-two-headphones/tablet/image-product.jpg',
+      desktop:
+        '/assets/product-xx99-mark-two-headphones/desktop/image-product.jpg',
     },
     category: 'headphones',
     categoryImage: {

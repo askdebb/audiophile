@@ -1,25 +1,37 @@
 import React from 'react';
 import Image from 'next/image';
 
+import { useScreenSize } from '@/helpers/useScreensize';
+
 const AppInfoComponent = () => {
+  const screenSizeDetector = useScreenSize();
+
   return (
-    <div className="container my-28">
+    <div className="container my-28 ">
       <div className="">
         <div className="my-5">
           <Image
             alt="best gear image"
             className="rounded-radius"
             height={600}
-            src="/assets/shared/mobile/image-best-gear.jpg"
-            width={654}
+            src={
+              screenSizeDetector === 'tablet'
+                ? '/assets/shared/tablet/image-best-gear.jpg'
+                : screenSizeDetector === 'desktop'
+                  ? '/assets/shared/desktop/image-best-gear.jpg'
+                  : screenSizeDetector === '2xl'
+                    ? '/assets/shared/desktop/image-best-gear.jpg'
+                    : '/assets/shared/mobile/image-best-gear.jpg'
+            }
+            width={screenSizeDetector === 'mobile' ? 654 : 700}
           />
         </div>
         <div>
-          <h2 className="my-5 text-center uppercase font-extrabold text-h3  tracking-subtitle">
+          <h2 className="my-5 text-center uppercase font-extrabold text-h3  tracking-subtitle md:text-h2 md:container md:my-10">
             Bringing you the <span className="text-primary">best</span> audio
             gear
           </h2>
-          <p className="text-center leading-body  text-body mb-5 text-textColor">
+          <p className="text-center leading-body  text-body mb-5 text-textColor md:container">
             Located at the heart of New York City, Audiophile is the premier
             store for high end headphones, earphones, speakers, and audio
             accessories. We have a large showroom and luxury demonstration rooms

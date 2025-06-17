@@ -54,7 +54,7 @@ const AppQtyCountComponent = ({
   }, [addFeedback]);
 
   return (
-    <div className="container">
+    <div className="container md:-ml-5 md:">
       <div className="flex items-center gap-5">
         <div className="w-40 h-12 bg-[#f1f1f1] flex items-center">
           <button
@@ -82,7 +82,7 @@ const AppQtyCountComponent = ({
 
         <button
           aria-label={`Add ${count} items to cart`}
-          className={`uppercase text-white bg-primary hover:bg-hoverColor w-40 h-12 font-bold tracking-subtitle text-subtitle transition-all ${addFeedback ? 'focus:bg-green-500 transition-all' : ''}`}
+          className={`uppercase text-white bg-primary hover:bg-hoverColor w-40 h-12 font-bold tracking-subtitle text-subtitle transition-all md:tracking-[0.5px] ${addFeedback ? 'focus:bg-green-500 transition-all' : ''}`}
           onClick={handleAddToCart}
         >
           {addFeedback ? 'added' : 'Add to Cart'}

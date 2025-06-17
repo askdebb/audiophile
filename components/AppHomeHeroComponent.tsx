@@ -34,17 +34,17 @@ const AppHomeHeroComponent = ({
         >
           <div className="-mt-8 flex flex-col container text-center justify-center h-full">
             <h1
-              className={`mt-28 mb-5 uppercase text-subtitle text-textColor tracking-overline  ${overlineTextClassName}`}
+              className={`mt-28 mb-5 uppercase text-subtitle text-textColor tracking-overline md:text-[1.2rem] md:mt-16  ${overlineTextClassName}  `}
             >
               {overlineText}
             </h1>
             <h1
-              className={`mb-5 uppercase leading-h2 tracking-h2 text-white text-h2 font-extrabold ${titleClassName}`}
+              className={`mb-5 uppercase leading-h2 tracking-h2 text-white text-h2 font-extrabold md:mt-1 md:text-[50px] md:leading-h1 ${titleClassName}`}
             >
               {title}
             </h1>
             <p
-              className={`mb-5 text-white opacity-80 leading-body text-subtitle tracking-h3 ${descriptionClassName}`}
+              className={`mb-5 text-white opacity-80 leading-body text-subtitle tracking-h3 md:opacity-100 md:font-semibold md:text-center md:w-2/3 md:mx-auto md:text-[1rem] md:tracking-normal  ${descriptionClassName} `}
             >
               {description}
             </p>

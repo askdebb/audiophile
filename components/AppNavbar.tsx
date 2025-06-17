@@ -148,7 +148,7 @@ const AppNavbar = () => {
         {borderLinePath && (
           <div
             aria-hidden="true"
-            className="border-b border-[#979797] mx-auto w-full max-w-[82.5rem]"
+            className="border-1.5 border-b-[#979797] mx-auto w-full md:w-[42.5rem] lg:w-[57.2rem] xl:w-[73.5rem]"
           />
         )}
       </div>

@@ -9,6 +9,7 @@ import AppQtyCountComponent from './AppQtyCountComponent';
 import AppMenuComponent from './AppMenuComponent';
 import AppInfoComponent from './AppInfoComponent';
 
+import { useScreenSize } from '@/helpers/useScreensize';
 import { Product } from '@/interfaces/CategoryItem';
 import { checkComma } from '@/lib';
 import { menuInfo } from '@/data/MenuCard';
@@ -21,36 +22,45 @@ const AppProductDetailComponent = ({
   product,
 }: AppProductDetailsComponentProp) => {
   const router = useRouter();
+  const screenSizeDetector = useScreenSize();
 
   return (
-    <div className=" pb-10">
-      <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center rounded-radius my-10 bg-[#979797]">
-        <Image
-          alt={product.name}
-          className="object-cover"
-          height={400}
-          src={product.image.mobile}
-          width={400}
-        />
-      </div>
-      <div className="container space-y-6 mb-10">
-        <span className="uppercase text-subtitle text-primary tracking-overline">
-          {product.new ? 'new product' : ''}
-        </span>
-        <h2 className="uppercase leading-h2 tracking-h2 text-h3 font-bold">
-          {product.name}
-        </h2>
-        <p className="opacity-50 leading-body">{product.description}</p>
-        <p className="leading-body tracking-subtitle font-bold text-h5">
-          ${checkComma(product.price)}
-        </p>
-      </div>
-      <div className="pb-10">
-        <AppQtyCountComponent product={product} />
+    <div className=" pb-10 ">
+      <div className="md:flex md:items-center md:gap-x-5 md:container md:mt-16">
+        <div className="w-[380px] h-[400px] flex items-center mx-auto justify-center rounded-radius my-10 bg-cardColor md:bg-transparent md:my-0  md:w-1/2 ">
+          <Image
+            alt={product.name}
+            className="object-cover md:rounded-radius"
+            height={400}
+            src={
+              screenSizeDetector === 'tablet'
+                ? product.image.tablet
+                : screenSizeDetector === 'desktop'
+                  ? product.image.desktop
+                  : product.image.mobile
+            }
+            width={400}
+          />
+        </div>
+        <div className="container space-y-6 mb-10 md:w-1/2">
+          <span className="uppercase text-subtitle text-primary tracking-overline">
+            {product.new ? 'new product' : ''}
+          </span>
+          <h2 className="uppercase leading-h2 tracking-h2 text-h3 font-bold md:w-2/3 md:leading-h3 md:text-h4 md:font-extrabold">
+            {product.name}
+          </h2>
+          <p className="opacity-50 leading-body">{product.description}</p>
+          <p className="leading-body tracking-subtitle font-bold text-h5 md:pb-5">
+            ${checkComma(product.price)}
+          </p>
+          <div className="pb-10 md:pb-0">
+            <AppQtyCountComponent product={product} />
+          </div>
+        </div>
       </div>
 
       <div className="container">
-        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold">
+        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:mt-24">
           Features
         </h2>
         <p className="text-body opacity-50 leading-body mb-10">
@@ -58,38 +68,41 @@ const AppProductDetailComponent = ({
         </p>
       </div>
 
-      <div className="container mb-10">
-        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold">
+      <div className="container mb-10 md:mt-24 md:flex md:items-start md:justify-start md:gap-x-36">
+        <h2 className="my-5 uppercase leading-h2 tracking-h2 text-h4 font-extrabold md:my-0">
           in the box
         </h2>
-        <ul className="text-body opacity-50 leading-body mb-10 space-y-1">
+        <ul className="text-body opacity-50 leading-body mb-10 space-y-1 md:opacity-100 md:space-y-4">
           {product.includes.map((accessoryItem, index) => (
             <li key={index} className="flex gap-x-5">
               <span className="text-primary font-bold">
                 {accessoryItem.quantity}x
               </span>
-              <span>{accessoryItem.item}</span>
+              <span className="md:opacity-70">{accessoryItem.item}</span>
             </li>
           ))}
         </ul>
       </div>
 
       <div className="container">
-        <div className="flex flex-col gap-y-5  mb-10">
-          <Image
-            alt={product.name}
-            className="object-cover rounded-radius"
-            height={300}
-            src={product.gallery.first.mobile}
-            width={600}
-          />
-          <Image
-            alt={product.name}
-            className="object-cover rounded-radius"
-            height={300}
-            src={product.gallery.second.mobile}
-            width={600}
-          />
+        <div className="flex flex-col gap-y-5 mb-10 md:grid md:grid-cols-2 md:gap-5">
+          <div className="md:space-y-5">
+            <Image
+              alt={product.name}
+              className="object-cover rounded-radius"
+              height={300}
+              src={product.gallery.first.mobile}
+              width={600}
+            />
+            <Image
+              alt={product.name}
+              className="object-cover rounded-radius"
+              height={300}
+              src={product.gallery.second.mobile}
+              width={600}
+            />
+          </div>
+
           <Image
             alt={product.name}
             className="object-cover rounded-radius"
@@ -101,10 +114,10 @@ const AppProductDetailComponent = ({
       </div>
 
       <div className="container">
-        <h3 className="my-5 uppercase leading-h2 tracking-h3 text-center text-h4 font-extrabold">
+        <h3 className="my-5 uppercase leading-h2 tracking-h3 text-center text-h4 font-extrabold md:mt-24">
           you make also like
         </h3>
-        <div>
+        <div className="md:flex md:gap-x-5">
           {product.others.map((otherItems, index) => (
             <div key={index}>
               <Card className="bg-[#f1f1f1] shadow-none">
@@ -112,7 +125,13 @@ const AppProductDetailComponent = ({
                   <Image
                     alt={otherItems.slug}
                     height={240}
-                    src={otherItems.image.mobile}
+                    src={
+                      screenSizeDetector === 'mobile'
+                        ? otherItems.image.mobile
+                        : screenSizeDetector === 'tablet'
+                          ? otherItems.image.tablet
+                          : otherItems.image.desktop
+                    }
                     width={654}
                   />
                 </CardBody>
