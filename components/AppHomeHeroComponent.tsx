@@ -38,11 +38,11 @@ const AppHomeHeroComponent = ({
         >
           <div className="lg:flex lg:items-center lg:justify-between">
             <div className="-mt-8 flex flex-col container text-center justify-center h-full lg:w-1/2 lg:mt-20 lg:text-left lg:max-w-none lg:px-0">
-              <h6
-                className={`mt-28 mb-5 uppercase text-subtitle text-textColor tracking-overline md:text-[1.2rem] md:mt-16 lg:text-subtitle lg:mt-0 ${overlineTextClassName}  `}
+              <h1
+                className={`mt-48 mb-5 uppercase text-subtitle text-textColor tracking-overline md:text-[1.2rem] md:mt-16 lg:text-subtitle lg:mt-0 ${overlineTextClassName}  `}
               >
                 {overlineText}
-              </h6>
+              </h1>
               <h1
                 className={`mb-5 uppercase leading-h2 tracking-h2 text-white text-h2 font-extrabold md:mt-1 md:text-[50px] md:leading-h1 lg:text-h2 lg:text-left lg:max-w-none lg:px-0 lg:leading-h2 xl:w-3/4 xl:text-[4rem] xl:leading-h1 ${titleClassName}`}
               >
