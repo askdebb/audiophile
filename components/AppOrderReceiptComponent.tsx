@@ -9,7 +9,7 @@ import {
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { useCart } from '@/actions/useCart';
+import { useCartStore } from '@/store/cartStore';
 import { checkComma } from '@/lib';
 import { useScreenSize } from '@/helpers/useScreensize';
 
@@ -25,7 +25,7 @@ const AppOrderReceiptComponent = ({
   onOpenChange,
   grandPrice,
 }: AppOrderReceiptComponent) => {
-  const { cartItems, cartCount } = useCart();
+  const { carts, getUniqueItemCount } = useCartStore();
 
   const router = useRouter();
   const screenSizeDetector = useScreenSize();
@@ -68,28 +68,28 @@ const AppOrderReceiptComponent = ({
                     <div className="flex items-start justify-around md:mt-1">
                       <div className="flex items-start gap-x-3">
                         <Image
-                          alt={cartItems[0]?.slug ?? ''}
+                          alt={carts[0]?.slug ?? ''}
                           className="mt-4 md:mt-0"
                           height={64}
-                          src={cartItems[0].image ?? ''}
+                          src={carts[0].image ?? ''}
                           width={64}
                         />
 
                         <div className="mt-5 w-28 space-y-1">
                           <h3 className="font-bold text-body ">
-                            {cartItems[0].name}
+                            {carts[0].name}
                           </h3>
-                          <p>${checkComma(cartItems[0].price)}</p>
+                          <p>${checkComma(carts[0].price)}</p>
                         </div>
                       </div>
                       <span className=" mt-4 font-medium opacity-50">
-                        {cartItems[0].quantity} x
+                        {carts[0].quantity} x
                       </span>
                     </div>
                     <div className="border-b-1.5 w-[85%] mx-auto mt-2" />
 
                     <p className="text-center text-body font-bold opacity-50 py-3">
-                      and {cartCount - 1} other item(s)
+                      and {getUniqueItemCount() - 1} other item(s)
                     </p>
                   </div>
                   <div className="rounded-b-radius bg-black p-5 md:rounded-b-none md:rounded-e-radius md:w-1/3">

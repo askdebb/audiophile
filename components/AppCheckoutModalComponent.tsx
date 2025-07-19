@@ -12,7 +12,7 @@ import {
 } from '@heroui/react';
 import { Trash2 } from 'lucide-react';
 
-import { useCart } from '@/actions/useCart';
+import { useCartStore } from '@/store/cartStore';
 import { checkComma } from '@/lib';
 import { useScreenSize } from '@/helpers/useScreensize';
 
@@ -28,36 +28,17 @@ const AppCheckoutModalComponent = ({
 }: AppCheckoutModalComponentProp) => {
   const router = useRouter();
   const {
-    cartItems,
-    updateQuantity,
-    removeFromCart,
-    getTotalPrice,
+    carts,
+    removeProduct,
+    getTotal,
     clearCart,
-  } = useCart();
+    increaseQty,
+    decreaseQty,
+  } = useCartStore();
 
   const screenSizeDetector = useScreenSize();
 
-  // const handleQuantityChange = (id: string, newQuantity: number) => {
-  //   if (newQuantity <= 0) {
-  //     removeFromCart(id);
-  //   } else {
-  //     updateQuantity(id, newQuantity);
-  //   }
-  // };
-
-  const grossPrice = Number(getTotalPrice().toFixed(2));
-
-  const incrementQuantity = (id: number, currentQuantity: number) => {
-    updateQuantity(id, currentQuantity + 1);
-  };
-
-  const decrementQuantity = (id: number, currentQuantity: number) => {
-    if (currentQuantity > 1) {
-      updateQuantity(id, currentQuantity - 1);
-    } else {
-      removeFromCart(id);
-    }
-  };
+  const grossPrice = Number(getTotal().toFixed(2));
 
   return (
     <div className="md:relative">
@@ -82,7 +63,7 @@ const AppCheckoutModalComponent = ({
               <ModalHeader className="flex flex-col gap-1">
                 <div className="flex justify-between items-center w-full">
                   <h2 className="text-h5 font-bold uppercase">
-                    Cart ({cartItems.length})
+                    Cart ({carts.length})
                   </h2>
 
                   <button
@@ -94,13 +75,13 @@ const AppCheckoutModalComponent = ({
                 </div>
               </ModalHeader>
               <ModalBody>
-                {cartItems.length === 0 ? (
+                {carts.length === 0 ? (
                   <div className="text-center py-8">
                     <p className="text-lg opacity-50">Your cart is empty</p>
                   </div>
                 ) : (
                   <div className="space-y-6">
-                    {cartItems.map((item) => (
+                    {carts.map((item) => (
                       <div
                         key={item.id}
                         className="flex items-center gap-4 p-4 "
@@ -131,9 +112,7 @@ const AppCheckoutModalComponent = ({
                           <button
                             aria-label="Decrease quantity"
                             className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:text-hoverColor"
-                            onClick={() =>
-                              decrementQuantity(item.id, item.quantity)
-                            }
+                            onClick={() => decreaseQty(item.id)}
                           >
                             −
                           </button>
@@ -143,9 +122,7 @@ const AppCheckoutModalComponent = ({
                           <button
                             aria-label="Increase quantity"
                             className="w-8 h-8 flex items-center justify-center font-bold text-sm hover:text-hoverColor"
-                            onClick={() =>
-                              incrementQuantity(item.id, item.quantity)
-                            }
+                            onClick={() => increaseQty(item.id)}
                           >
                             +
                           </button>
@@ -155,7 +132,7 @@ const AppCheckoutModalComponent = ({
                         <button
                           aria-label="Remove item"
                           className="text-red-500 hover:text-red-700 text-sm"
-                          onClick={() => removeFromCart(item.id)}
+                          onClick={() => removeProduct(item.id)}
                         >
                           <Trash2 />
                         </button>
@@ -164,7 +141,7 @@ const AppCheckoutModalComponent = ({
                   </div>
                 )}
               </ModalBody>
-              {cartItems.length > 0 && (
+              {carts.length > 0 && (
                 <ModalFooter className="flex flex-col gap-4">
                   <div className="flex justify-between items-center w-full my-5">
                     <span className="uppercase text-16">Total</span>

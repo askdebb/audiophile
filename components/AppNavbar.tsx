@@ -8,11 +8,11 @@ import { useDisclosure } from '@heroui/react';
 import AppMenuDrawerComponent from './AppMenuDrawerComponent';
 import AppCheckoutModalComponent from './AppCheckoutModalComponent';
 
-import { useCart } from '@/actions/useCart';
+import { useCartStore } from '@/store/cartStore';
 
 const AppNavbar = () => {
   const [isMounted, setIsMounted] = useState(false);
-  const { cartCount } = useCart();
+  const { getUniqueItemCount } = useCartStore();
   const pathname = usePathname();
 
   const {
@@ -127,7 +127,7 @@ const AppNavbar = () => {
 
           <div className="relative">
             <button
-              aria-label={`Cart (${cartCount} items)`}
+              aria-label={`Cart (${getUniqueItemCount()} items)`}
               onClick={onCartOpen}
             >
               <Image
@@ -137,12 +137,12 @@ const AppNavbar = () => {
                 src="/assets/shared/desktop/icon-cart.svg"
                 width={23}
               />
-              {cartCount > 0 && (
+              {getUniqueItemCount() > 0 && (
                 <span
                   aria-hidden="true"
                   className="text-primary font-extrabold absolute -top-5 right-0.5"
                 >
-                  {cartCount}
+                  {getUniqueItemCount()}
                 </span>
               )}
             </button>

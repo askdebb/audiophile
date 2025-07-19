@@ -2,7 +2,7 @@
 
 import React, { useState, useEffect } from 'react';
 
-import { useCart } from '@/actions/useCart';
+import { useCartStore } from '@/store/cartStore';
 import { Product } from '@/interfaces/CategoryItem';
 
 interface AppQtyCountComponentProps {
@@ -18,7 +18,7 @@ const AppQtyCountComponent = ({
 }: AppQtyCountComponentProps) => {
   const [addFeedback, setAddFeedback] = useState<boolean>(false);
   const [count, setCount] = useState<number>(min);
-  const { addToCart } = useCart();
+  const { addProduct } = useCartStore();
 
   const handleIncrement = () => {
     setCount((prev) => Math.min(prev + 1, max));
@@ -29,16 +29,14 @@ const AppQtyCountComponent = ({
   };
 
   const handleAddToCart = () => {
-    addToCart(
-      {
-        id: product.id,
-        name: product.name,
-        price: product.price,
-        image: product.image.mobile,
-        slug: product.slug,
-      },
-      count,
-    );
+    addProduct({
+      id: String(product.id),
+      name: product.name,
+      price: product.price,
+      image: product.image.mobile,
+      slug: product.slug,
+      quantity: count,
+    });
     setAddFeedback(true);
     setCount(min);
   };

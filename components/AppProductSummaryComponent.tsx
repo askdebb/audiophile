@@ -7,7 +7,7 @@ import Image from 'next/image';
 import AppOrderReceiptComponent from './AppOrderReceiptComponent';
 
 import { checkComma } from '@/lib';
-import { useCart } from '@/actions/useCart';
+import { useCartStore } from '@/store/cartStore';
 import { SHIPPING_FEE, VAT_CHARGE } from '@/contants/index';
 
 interface AppProductSummaryComponentProps {
@@ -18,9 +18,9 @@ const AppProductSummaryComponent = ({
   isEmailValid,
 }: AppProductSummaryComponentProps) => {
   const { isOpen, onClose, onOpen, onOpenChange } = useDisclosure();
-  const { cartItems, getTotalPrice } = useCart();
+  const { carts, getTotal } = useCartStore();
 
-  const grossPrice = Number(getTotalPrice().toFixed(2));
+  const grossPrice = Number(getTotal().toFixed(2));
   const beforeVATprice = grossPrice + SHIPPING_FEE;
   const vatPrice = beforeVATprice * VAT_CHARGE;
   const netPrice = beforeVATprice + vatPrice;
@@ -45,7 +45,7 @@ const AppProductSummaryComponent = ({
             summary
           </h2>
           <div className="py-3">
-            {cartItems.map((finalItemToPurchase, index) => (
+            {carts.map((finalItemToPurchase, index) => (
               <div
                 key={index}
                 className="flex items-center justify-between my-3"

@@ -7,7 +7,6 @@ import { siteConfig } from '@/config/site';
 import { manrope } from '@/config/fonts';
 import AppNavbar from '@/components/AppNavbar';
 import AppFooterComponent from '@/components/AppFooterComponent';
-import CartContextProvider from '@/context/CartContextProvider';
 
 export const metadata: Metadata = {
   title: {
@@ -36,15 +35,13 @@ export default function RootLayout({
     <html className={manrope.className} lang="en">
       <head />
       <body>
-        <CartContextProvider>
-          <Providers>
-            <div className="relative flex flex-col min-h-screen">
-              <AppNavbar />
-              <main className="flex-1">{children}</main>
-              <AppFooterComponent />
-            </div>
-          </Providers>
-        </CartContextProvider>
+        <Providers>
+          <div className="relative flex flex-col min-h-screen">
+            <AppNavbar />
+            <main className="flex-1">{children}</main>
+            <AppFooterComponent />
+          </div>
+        </Providers>
       </body>
     </html>
   );
